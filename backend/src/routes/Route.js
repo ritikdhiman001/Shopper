@@ -1,8 +1,10 @@
 import express from "express";
 import {
+  deleteUser,
   getUser,
   loginUser,
   registerUser,
+  updateUser,
 } from "../controller/user/userController.js";
 import {
   addClothes,
@@ -31,5 +33,7 @@ routes.post("/clothes", authMiddleware, adminMiddleware, addClothes);
 routes.put("/clothes/:id", authMiddleware, adminMiddleware, updateClothes);
 routes.delete("/clothes/:id", authMiddleware, adminMiddleware, deleteClothes);
 routes.get("/admin/users", authMiddleware, adminMiddleware, getUser);
+routes.delete("/admin/user/:id", authMiddleware, adminMiddleware, deleteUser);
+routes.put("/admin/user/:id", authMiddleware, adminMiddleware, updateUser);
 
 export default routes;

@@ -2,8 +2,15 @@ import prisma from "../../../PrismaClient.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+// Register User
 export const registerUser = async (req, res) => {
   const { name, phone, address, email, password } = req.body;
+  if (!name || !email || !password) {
+    return res.status(400).json({
+      success: false,
+      message: "All fields are required",
+    });
+  }
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -50,6 +57,8 @@ export const registerUser = async (req, res) => {
     });
   }
 };
+
+// Login User
 
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -100,6 +109,8 @@ export const loginUser = async (req, res) => {
   }
 };
 
+// Get User
+
 export const getUser = async (req, res) => {
   try {
     const user = await prisma.user.findMany({
@@ -124,4 +135,83 @@ export const getUser = async (req, res) => {
       message: error.message,
     });
   }
+};
+
+// Delete User
+
+export const deleteUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await prisma.user.delete({
+      where: { id },
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: "User Delete Successfull",
+      data: user,
+    });
+  } catch (error) {
+    if (error.code === "P2025") {
+      return res.status(404).json({
+        success: false,
+        message: "User Not Found",
+      });
+    }
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+// Update User
+
+export const updateUser = async (req, res) => {
+  const { id } = req.params;
+  const { name, email, address, phone } = req.body;
+
+  try {
+    const updatedUser = await prisma.user.update({
+      where: { id },
+      data: {
+        name,
+        email,
+        address,
+        phone,
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        address: true,
+        phone: true,
+      },
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: "User Updated Successfully",
+      data: updatedUser,
+    });
+  } catch (error) {
+    if (error.code === "P2025") {
+      return res.status(404).json({
+        success: false,
+        message: "User Not Found",
+      });
+    }
+  }
+
+  if (error.code === "P2002") {
+    return res.status(400).json({
+      success: false,
+      message: "Email Already Exist",
+    });
+  }
+
+  return res.status(500).json({
+    success: false,
+    message: error.message,
+  });
 };

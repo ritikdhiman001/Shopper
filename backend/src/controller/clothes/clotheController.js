@@ -114,6 +114,7 @@ export const deleteClothes = async (req, res) => {
     res.status(200).json({
       success: true,
       message: "Cloth Delete Successfull",
+      data: cloth,
     });
   } catch (error) {
     res.status(500).json({
