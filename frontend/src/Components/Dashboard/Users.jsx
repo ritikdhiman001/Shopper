@@ -10,7 +10,7 @@ const Users = () => {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const deleteUser = async (id) => {
-    const confirmDelete = window.confirm(`Are You Sure To Delete User `);
+    const confirmDelete = window.confirm(`Are You Sure To Delete User ? `);
 
     if (!confirmDelete) return;
     try {
@@ -78,7 +78,7 @@ const Users = () => {
                 <tr>
                   <td colSpan="5" className="px-6 py-20 text-center">
                     <div className="flex flex-col justify-center items-center ">
-                      <LoaderCircle className="w-10 h-10 text-blue-600 animate-spin" />
+                      <LoaderCircle className="w-10 h-10 text-black animate-spin" />
                     </div>
                   </td>
                 </tr>
@@ -87,11 +87,9 @@ const Users = () => {
                   <td colSpan="5" className="px-6 py-20 text-center">
                     <div className="flex flex-col items-center">
                       <div className="bg-gray-100 p-4 rounded-full mb-4">
-                        <UsersIcon className="w-8 h-8 text-gray-400" />
+                        <UsersIcon className="w-8 h-8" />
                       </div>
-                      <p className="text-gray-900 font-semibold">
-                        No users found
-                      </p>
+                      <p>No users found</p>
                     </div>
                   </td>
                 </tr>
@@ -99,7 +97,7 @@ const Users = () => {
                 data.map((elem, idx) => (
                   <tr
                     key={elem.id || idx}
-                    className="hover:bg-gray-50/80 transition-all duration-200 group text-[15px]"
+                    className="hover:bg-gray-50/80 transition-all duration-200 group text-[15px] border-b border-gray-200"
                   >
                     <td className="px-6 py-4">{idx + 1}</td>
                     <td className="px-6 py-4">
@@ -117,17 +115,17 @@ const Users = () => {
                             setSelectedUser(elem);
                             setIsEditOpen(true);
                           }}
-                          className="p-2 text-blue-600 rounded-lg transition-colors border border-transparent hover:border-blue-100 shadow-sm bg-white cursor-pointer"
+                          className="hover:text-blue-600 cursor-pointer"
                           title="Edit User"
                         >
-                          <UserPen size={18} />
+                          <UserPen size={20} />
                         </button>
                         <button
                           onClick={() => deleteUser(elem.id)}
-                          className="p-2 text-red-600 rounded-lg transition-colors border border-transparent hover:border-red-100 shadow-sm bg-white cursor-pointer"
+                          className="hover:text-red-600 cursor-pointer"
                           title="Delete User"
                         >
-                          <Trash2 size={18} />
+                          <Trash2 size={19} />
                         </button>
                       </div>
                     </td>

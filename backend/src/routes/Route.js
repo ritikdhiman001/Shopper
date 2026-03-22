@@ -17,6 +17,8 @@ import {
   adminMiddleware,
   authMiddleware,
 } from "../middleware/authMiddleware.js";
+import upload from "../middleware/upload.js";
+import { overviewData } from "../controller/overview/overview.js";
 
 const routes = express.Router();
 
@@ -29,11 +31,24 @@ routes.get("/clothes", getClothes);
 routes.get("/clothes/:id", getClothesById);
 
 // Admin only
-routes.post("/clothes", authMiddleware, adminMiddleware, addClothes);
-routes.put("/clothes/:id", authMiddleware, adminMiddleware, updateClothes);
+routes.post("/clothes", upload.single("image"), addClothes);
+routes.put(
+  "/clothes/:id",
+  upload.single("image"),
+  authMiddleware,
+  adminMiddleware,
+  updateClothes,
+);
 routes.delete("/clothes/:id", authMiddleware, adminMiddleware, deleteClothes);
 routes.get("/admin/users", authMiddleware, adminMiddleware, getUser);
 routes.delete("/admin/user/:id", authMiddleware, adminMiddleware, deleteUser);
 routes.put("/admin/user/:id", authMiddleware, adminMiddleware, updateUser);
+
+routes.get(
+  "/admin/overviewdata",
+  authMiddleware,
+  adminMiddleware,
+  overviewData,
+);
 
 export default routes;

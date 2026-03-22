@@ -1,28 +1,45 @@
 import prisma from "../../../PrismaClient.js";
+import cloudinary from "../../config/cloudinary.js";
 
 export const addClothes = async (req, res) => {
   try {
-    const { name, price, discountPrice, description, image, category } =
-      req.body;
+    const { name, price, discountPrice, description, category } = req.body;
 
-    if (!name || !price || !discountPrice || !image || !category) {
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: "Image is required",
+      });
+    }
+
+    if (!name || !price || !discountPrice || !category) {
       return res.status(400).json({
         success: false,
         message: "All required fields must be provided",
       });
     }
 
+    const result = await new Promise((resolve, reject) => {
+      const stream = cloudinary.uploader.upload_stream(
+        { folder: "Products" },
+        (error, uploadedImage) => {
+          if (error) reject(error);
+          else resolve(uploadedImage);
+        },
+      );
+      stream.end(req.file.buffer);
+    });
+
     const cloth = await prisma.clothes.create({
       data: {
         name,
-        price,
-        discountPrice,
+        price: Number(price),
+        discountPrice: Number(discountPrice),
         description,
-        image,
+        image: result.secure_url,
         category,
       },
     });
-
     res.status(201).json({
       success: true,
       data: cloth,
@@ -85,10 +102,34 @@ export const getClothesById = async (req, res) => {
 export const updateClothes = async (req, res) => {
   try {
     const { id } = req.params;
+    const { name, price, discountPrice, description, category } = req.body;
+
+    let imageUrl;
+
+    if (req.file) {
+      const result = await Promise((resolve, reject) => {
+        const stream = cloudinary.uploader.upload_stream(
+          { folder: "Products" },
+          (error, uploadedImage) => {
+            if (error) reject(error);
+            else resolve(uploadedImage);
+          },
+        );
+        stream.end(req.file.buffer);
+      });
+      imageUrl = result.secure_url;
+    }
 
     const cloth = await prisma.clothes.update({
       where: { id },
-      data: req.body,
+      data: {
+        name,
+        price: Number(price),
+        discountPrice: Number(discountPrice),
+        description,
+        category,
+        ...(imageUrl && { image: imageUrl }),
+      },
     });
 
     res.status(200).json({

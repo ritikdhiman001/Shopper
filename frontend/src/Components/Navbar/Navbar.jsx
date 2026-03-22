@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import cart_icon from "../Assets/cart_icon.png";
 import { ShopContext } from "../../Context/ShopContext";
 
 function Navbar() {
@@ -118,7 +117,11 @@ function Navbar() {
         </Link>
         <div className="relative flex items-center">
           <Link to="/cart">
-            <img src={cart_icon} alt="cart" className="w-6 lg:w-8" />
+            <img
+              src="https://res.cloudinary.com/dpqggtyjw/image/upload/v1772640252/cart_icon_exaar9.png"
+              alt="cart"
+              className="w-6 lg:w-8"
+            />
           </Link>
           <div className="absolute -top-2 -right-2 w-4 lg:w-5 h-4 lg:h-5 flex justify-center items-center rounded-full text-[10px] lg:text-[12px] bg-[#ff4141] text-white">
             {getTotalCartItems()}
