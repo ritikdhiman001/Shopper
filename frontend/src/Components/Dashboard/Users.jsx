@@ -49,7 +49,7 @@ const Users = () => {
   }, []);
 
   return (
-    <div className="p-8">
+    <div className="p-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between py-4 ">
         <div>
           <h1 className="text-3xl font-bold">User Management</h1>
@@ -60,8 +60,8 @@ const Users = () => {
         </div>
       </div>
 
-      <div className="border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
-        <div>
+      <div className="border border-gray-200 rounded-2xl shadow-sm overflow-hidden h-152">
+        <div className="max-h-screen overflow-y-auto hide-scrollbar">
           <table className="w-full text-left">
             <thead className="bg-gray-50/80 border-b border-gray-200">
               <tr className="text-[15px] font-bold uppercase">

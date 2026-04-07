@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 
 const EditProduct = ({ product, onClose, refreshProducts }) => {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [preview, setPreview] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
@@ -42,6 +43,7 @@ const EditProduct = ({ product, onClose, refreshProducts }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     try {
       const token = localStorage.getItem("token");
@@ -66,6 +68,8 @@ const EditProduct = ({ product, onClose, refreshProducts }) => {
     } catch (error) {
       toast.error("Faild To Update Product");
       console.error(error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -140,7 +144,7 @@ const EditProduct = ({ product, onClose, refreshProducts }) => {
           </div>
 
           <div className="py-1">
-            <label className="text-[16px font-medium]">Category</label>
+            <label className="text-[16px] font-medium]">Category</label>
             <select
               name="category"
               required
@@ -179,9 +183,14 @@ const EditProduct = ({ product, onClose, refreshProducts }) => {
             </button>
             <button
               type="submit"
+              disabled={isSubmitting}
               className="flex-1 bg-black text-white py-3 rounded-xl font-medium active:scale-95 flex items-center justify-center gap-2 cursor-pointer"
             >
-              Save Changes
+              {isSubmitting ? (
+                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              ) : (
+                <p>Save Changes</p>
+              )}
             </button>
           </div>
         </form>

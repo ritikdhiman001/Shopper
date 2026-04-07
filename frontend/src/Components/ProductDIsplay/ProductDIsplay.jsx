@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { ShopContext } from "../../Context/ShopContext";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
@@ -57,7 +56,7 @@ const ProductDisplay = ({ product }) => {
 
           <button
             onClick={handleCartClick}
-            className="mt-8 bg-red-500 hover:bg-red-600 text-white py-4 px-8 rounded-xl font-semibold tracking-wider uppercase cursor-pointer active:scale-95 transition-transform w-full lg:w-max"
+            className="mt-8 bg-black hover:bg-black text-white py-4 px-8 rounded-xl font-semibold tracking-wider uppercase cursor-pointer active:scale-95 transition-transform w-full lg:w-max"
           >
             {cartItems[id] ? "Go To Cart" : "Add To Cart"}
           </button>

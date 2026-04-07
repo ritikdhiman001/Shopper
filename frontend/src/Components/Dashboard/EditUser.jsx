@@ -36,8 +36,14 @@ const EditUser = ({ user, onClose, refreshUser }) => {
       toast.success("User Update Successfully");
       refreshUser();
       onClose();
-    } catch {
-      toast.error("Faild To Update User");
+    } catch (error) {
+      const message =
+        error.response?.data?.message ||
+        error.response?.data?.error ||
+        "Failed To Update User";
+
+      toast.error(message);
+      console.error(error);
     }
   };
   return (

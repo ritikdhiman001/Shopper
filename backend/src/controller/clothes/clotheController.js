@@ -15,7 +15,7 @@ export const addClothes = async (req, res) => {
     if (!name || !price || !discountPrice || !category) {
       return res.status(400).json({
         success: false,
-        message: "All required fields must be provided",
+        message: "Please Fill All Fields",
       });
     }
 
@@ -107,7 +107,7 @@ export const updateClothes = async (req, res) => {
     let imageUrl;
 
     if (req.file) {
-      const result = await Promise((resolve, reject) => {
+      const result = await new Promise((resolve, reject) => {
         const stream = cloudinary.uploader.upload_stream(
           { folder: "Products" },
           (error, uploadedImage) => {

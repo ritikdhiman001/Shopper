@@ -27,12 +27,12 @@ export const PopularInMen = () => {
     fetchClothes();
   }, []);
   return (
-    <div className="flex flex-col items-center gap-6 py-16 px-4 sm:px-8 md:px-12 lg:px-20 bg-white">
+    <div className="flex flex-col items-center gap-6 py-16 px-4 sm:px-8 md:px-12 lg:px-20 ">
       <div className="flex flex-col items-center gap-3">
         <h1 className="text-[#171717] text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-center uppercase">
           Popular in Men
         </h1>
-        <div className="w-20 sm:w-24 h-1.5 bg-[#ff4141] rounded-full"></div>
+        <div className="w-20 sm:w-24 h-1.5 bg-black rounded-full"></div>
       </div>
 
       {loading ? (

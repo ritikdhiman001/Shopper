@@ -10,6 +10,7 @@ const AdminProduct = () => {
   const [loading, setLoading] = useState(true);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [category, setCategory] = useState("ALL");
 
   const [selectProduct, setSelectProduct] = useState(null);
 
@@ -31,24 +32,30 @@ const AdminProduct = () => {
       toast.error("Faild To Delete Product");
     }
   };
-  const fetchData = async () => {
+
+  const fetchData = async (category) => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:5000/api/clothes");
+
+      const url =
+        category === "ALL"
+          ? "http://localhost:5000/api/clothes"
+          : `http://localhost:5000/api/clothes?category=${category}`;
+
+      const res = await axios.get(url);
       setData(res.data.data);
     } catch {
-      toast.error("Failed to fetch products");
+      toast.error("Faild To Fetch Category Products");
     } finally {
       setLoading(false);
     }
   };
-
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData(category);
+  }, [category]);
 
   return (
-    <div className="p-8">
+    <div className="p-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between py-4">
         <div>
           <h1 className="text-3xl font-bold ">Product Management</h1>
@@ -66,11 +73,25 @@ const AdminProduct = () => {
             <ShoppingBag size={20} />
             <span className="font-semibold">{data.length} Total Products</span>
           </div>
+          <div className="bg-white border border-gray-200 px-4 py-2 rounded-lg">
+            <select
+              className="font-semibold focus:outline-none"
+              value={category}
+              onChange={(e) => {
+                setCategory(e.target.value);
+              }}
+            >
+              <option value="ALL">All</option>
+              <option value="MEN">Sort By Men</option>
+              <option value="WOMEN">Sort By Women</option>
+              <option value="KIDS">Sort By Kids</option>
+            </select>
+          </div>
         </div>
       </div>
 
-      <div className="border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
-        <div>
+      <div className="border border-gray-200 rounded-2xl shadow-sm overflow-hidden h-152">
+        <div className="max-h-screen overflow-y-auto hide-scrollbar">
           <table className="w-full text-left">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr className="text-[15px] font-bold uppercase">
@@ -167,14 +188,14 @@ const AdminProduct = () => {
       {isAddOpen && (
         <AddProduct
           onClose={() => setIsAddOpen(false)}
-          refreshProducts={fetchData}
+          refreshProducts={() => fetchData(category)}
         />
       )}
       {isEditOpen && (
         <EditProduct
           product={selectProduct}
           onClose={() => setIsEditOpen(false)}
-          refreshProducts={fetchData}
+          refreshProducts={() => fetchData(category)}
         />
       )}
     </div>

@@ -10,7 +10,7 @@ export const CartItems = () => {
   const hasItems = totalAmount > 0;
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-20">
+    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-20">
       {!hasItems ? (
         <div className="py-20 text-center bg-white shadow-sm rounded-xl border border-gray-200">
           <p className="text-gray-500 text-lg">Your cart is currently empty.</p>
@@ -107,7 +107,7 @@ export const CartItems = () => {
                   ₹{totalAmount.toFixed(2)}
                 </span>
               </div>
-              <button className="w-full bg-red-500 hover:bg-red-600 text-white py-3.5 rounded-lg font-bold transition-all active:scale-[0.98] mt-6 shadow-md shadow-blue-100 cursor-pointer">
+              <button className="w-full bg-black text-white py-3.5 rounded-lg font-bold transition-all active:scale-[0.98] mt-6 shadow-md shadow-blue-100 cursor-pointer active:scale-95">
                 Checkout
               </button>
             </div>

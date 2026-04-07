@@ -1,4 +1,4 @@
-import { X, Image as ImageIcon, PlusCircle } from "lucide-react";
+import { X } from "lucide-react";
 import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -9,7 +9,6 @@ const AddProduct = ({ onClose, refreshProducts }) => {
     price: "",
     discountPrice: "",
     description: "",
-    image: "",
     category: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -35,6 +34,12 @@ const AddProduct = ({ onClose, refreshProducts }) => {
       form.append("discountPrice", formData.discountPrice);
       form.append("description", formData.description);
       form.append("category", formData.category);
+      if (!selectedFile) {
+        toast.error("Please select an image");
+        setIsSubmitting(false);
+        return;
+      }
+
       form.append("image", selectedFile);
 
       await axios.post("http://localhost:5000/api/clothes", form, {
@@ -46,8 +51,12 @@ const AddProduct = ({ onClose, refreshProducts }) => {
       refreshProducts();
       onClose();
     } catch (error) {
-      toast.error("Failed to Add Product");
-      console.error(error);
+      const message =
+        error.response?.data?.message ||
+        error.response?.data?.error ||
+        "Something went wrong";
+
+      toast.error(message);
     } finally {
       setIsSubmitting(false);
     }
@@ -73,7 +82,6 @@ const AddProduct = ({ onClose, refreshProducts }) => {
             <div className="group">
               <label className="text-[16px] font-medium">Product Title</label>
               <input
-                required
                 type="text"
                 name="name"
                 onChange={handleChange}
@@ -85,7 +93,6 @@ const AddProduct = ({ onClose, refreshProducts }) => {
               <label className="text-[16px] font-medium">Image Source</label>
               <div className="relative">
                 <input
-                  required
                   type="file"
                   name="image"
                   onChange={(e) => setSelectedFile(e.target.files[0])}
@@ -99,7 +106,6 @@ const AddProduct = ({ onClose, refreshProducts }) => {
             <div className="py-1">
               <label className="text-[16px] font-medium">Original Price</label>
               <input
-                required
                 type="number"
                 name="price"
                 onChange={handleChange}
@@ -109,7 +115,6 @@ const AddProduct = ({ onClose, refreshProducts }) => {
             <div className="py-1">
               <label className="text-[16px] font-medium">Discount Price</label>
               <input
-                required
                 type="number"
                 name="discountPrice"
                 onChange={handleChange}
@@ -121,7 +126,6 @@ const AddProduct = ({ onClose, refreshProducts }) => {
           <div className="py-1">
             <label className="text-[16px] font-medium">Category</label>
             <select
-              required
               name="category"
               value={formData.category}
               onChange={handleChange}
@@ -139,7 +143,6 @@ const AddProduct = ({ onClose, refreshProducts }) => {
               Product Description
             </label>
             <textarea
-              required
               name="description"
               rows="3"
               onChange={handleChange}

@@ -33,7 +33,7 @@ const PopularInWomen = () => {
         <h1 className="text-[#171717] text-4xl md:text-5xl font-bold uppercase tracking-wide">
           Popular In Women
         </h1>
-        <div className="w-24 h-1.5 bg-[#ff4141] mx-auto mt-3 rounded-full "></div>
+        <div className="w-24 h-1.5 bg-black mx-auto mt-3 rounded-full "></div>
       </div>
 
       {loading ? (

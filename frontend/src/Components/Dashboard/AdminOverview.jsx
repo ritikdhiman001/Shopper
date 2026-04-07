@@ -26,7 +26,14 @@ const AdminOverview = () => {
       setOverview(res.data.data || res.data);
     } catch (error) {
       console.error("Fetch error:", error);
-      toast.error("Failed to fetch overview");
+
+      // 🔥 YAHI IMPORTANT HAI
+      if (error.response && error.response.status === 401) {
+        localStorage.removeItem("token");
+        window.location.href = "/adminlogin";
+      } else {
+        toast.error("Failed to fetch overview");
+      }
     } finally {
       setLoading(false);
     }
@@ -37,7 +44,7 @@ const AdminOverview = () => {
   }, []);
 
   return (
-    <div className="p-8">
+    <div className="p-6">
       <div className="py-5">
         <h1 className="text-3xl font-bold">Dashboard Overview</h1>
       </div>
