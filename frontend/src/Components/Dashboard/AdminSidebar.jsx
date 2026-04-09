@@ -13,27 +13,27 @@ const AdminSidebar = () => {
         <nav className="flex flex-col gap-4 ">
           <Link
             to="/admin"
-            className="bg-[#F9FAFB] text-black text-center px-4 py-2 rounded-lg active:scale-95 font-medium"
+            className="bg-white hover:bg-gray-100 text-center text-black px-4 py-2 rounded-lg active:scale-95 font-medium"
           >
             Dashboard
           </Link>
           <Link
             to="/admin/users"
-            className="bg-[#F9FAFB] text-black text-center px-4 py-2 rounded-lg active:scale-95 font-medium"
+            className="bg-white hover:bg-gray-100 text-center text-black px-4 py-2 rounded-lg active:scale-95 font-medium"
           >
             User
           </Link>
           <Link
             to="/admin/products"
-            className="bg-[#F9FAFB] text-black text-center px-4 py-2 rounded-lg active:scale-95 font-medium"
+            className="bg-white hover:bg-gray-100 text-black text-center px-4 py-2 rounded-lg active:scale-95 font-medium"
           >
             Products
           </Link>
           <Link
             to="/admin/orders"
-            className="bg-[#F9FAFB] text-black text-center px-4 py-2 rounded-lg active:scale-95 font-medium"
+            className="bg-white hover:bg-gray-100 text-black text-center px-4 py-2 rounded-lg active:scale-95 font-medium"
           >
-            Orders
+            Seles
           </Link>
           <button
             onClick={logout}
