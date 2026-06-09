@@ -46,8 +46,19 @@ const CategoryPage = () => {
   }
 
   return (
-    <div className="flex flex-col items-center w-full bg-white pb-20 pt-10">
-      <div className="grid grid-cols-4 gap-6 mt-10 w-[85%]">
+    <div className="flex flex-col items-center w-full bg-white ">
+      <h1 className="text-[#171717] text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-center uppercase py-2">
+        {" "}
+        {type === "mens"
+          ? "Men"
+          : type === "womens"
+            ? "Women"
+            : type === "kids"
+              ? "Kids"
+              : "Category"}{" "}
+        Collection
+      </h1>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 w-[85%]">
         {data.map((item, idx) => (
           <>
             <div
@@ -61,23 +72,23 @@ const CategoryPage = () => {
                 <img
                   loading="lazy"
                   onClick={() => window.scrollTo(0, 0)}
-                  className="w-full h-75 md:h-87.5 lg:h-100 object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                  className="w-full h-150 lg:h-100 object-cover object-top transition-transform duration-300 group-hover:scale-105"
                   src={item.image}
                   alt={item.name}
                 />
               </Link>
 
               <div className="flex flex-col gap-2">
-                <p className="text-[#374151] text-base font-medium leading-tight line-clamp-2">
+                <p className="text-[#374151] text-[20px] lg:text-[18px] font-medium leading-tight line-clamp-2">
                   {item.name}
                 </p>
 
                 <div className="flex gap-4 items-center">
-                  <div className="text-[#171717] text-lg font-bold">
+                  <div className="text-[#171717] text-2xl lg:text-[18px] font-bold">
                     ₹{Number(item.discountPrice).toLocaleString()}
                   </div>
 
-                  <div className="text-[#8c8c8c] text-sm font-medium line-through">
+                  <div className="text-[#8c8c8c] text-2xl lg:text-[18px]  font-medium line-through">
                     ₹{Number(item.price).toLocaleString()}
                   </div>
                 </div>
