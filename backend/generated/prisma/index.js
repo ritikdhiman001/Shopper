@@ -163,6 +163,10 @@ const config = {
         "fromEnvVar": null,
         "value": "windows",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "rhel-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -189,8 +193,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id       String @id @default(uuid())\n  name     String\n  phone    String\n  address  String\n  email    String @unique\n  password String\n  role     Role   @default(USER)\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nenum Role {\n  USER\n  ADMIN\n}\n\nmodel Clothes {\n  id            String   @id @default(uuid())\n  name          String\n  price         Float\n  discountPrice Float\n  description   String\n  image         String\n  category      Category\n  createdAt     DateTime @default(now())\n}\n\nenum Category {\n  MEN\n  WOMEN\n  KIDS\n}\n",
-  "inlineSchemaHash": "35918908231d89d35ab6977efa469d675017f7043983b697d9bcfda7d78bf6e0",
+  "inlineSchema": "generator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../generated/prisma\"\n  binaryTargets = [\"native\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id       String @id @default(uuid())\n  name     String\n  phone    String\n  address  String\n  email    String @unique\n  password String\n  role     Role   @default(USER)\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nenum Role {\n  USER\n  ADMIN\n}\n\nmodel Clothes {\n  id            String   @id @default(uuid())\n  name          String\n  price         Float\n  discountPrice Float\n  description   String\n  image         String\n  category      Category\n  createdAt     DateTime @default(now())\n}\n\nenum Category {\n  MEN\n  WOMEN\n  KIDS\n}\n",
+  "inlineSchemaHash": "5d6584463807d2b48de108550e1b3c6e037db964b3f0fc757c1e73c6c53e4295",
   "copyEngine": true
 }
 
@@ -231,6 +235,10 @@ Object.assign(exports, Prisma)
 // file annotations for bundling tools to include these files
 path.join(__dirname, "query_engine-windows.dll.node");
 path.join(process.cwd(), "generated/prisma/query_engine-windows.dll.node")
+
+// file annotations for bundling tools to include these files
+path.join(__dirname, "libquery_engine-rhel-openssl-3.0.x.so.node");
+path.join(process.cwd(), "generated/prisma/libquery_engine-rhel-openssl-3.0.x.so.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "generated/prisma/schema.prisma")
