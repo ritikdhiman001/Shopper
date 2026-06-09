@@ -11,7 +11,7 @@ const ShopContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/clothes")
+    fetch("https://shopper-be-kappa.vercel.app/api/clothes")
       .then((res) => res.json())
       .then((data) => setProducts(data.data));
   }, []);

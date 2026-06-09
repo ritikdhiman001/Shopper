@@ -18,7 +18,7 @@ const AdminOverview = () => {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.get(
-        "http://localhost:5000/api/admin/overviewdata",
+        "https://shopper-be-kappa.vercel.app/api/admin/overviewdata",
         {
           headers: { Authorization: `Bearer ${token}` },
         },
@@ -27,7 +27,6 @@ const AdminOverview = () => {
     } catch (error) {
       console.error("Fetch error:", error);
 
-      // 🔥 YAHI IMPORTANT HAI
       if (error.response && error.response.status === 401) {
         localStorage.removeItem("token");
         window.location.href = "/adminlogin";

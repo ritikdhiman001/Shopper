@@ -21,7 +21,7 @@ const AdminProduct = () => {
 
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5000/api/clothes/${id}`, {
+      await axios.delete(`https://shopper-be-kappa.vercel.app/api/clothes/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -39,8 +39,8 @@ const AdminProduct = () => {
 
       const url =
         category === "ALL"
-          ? "http://localhost:5000/api/clothes"
-          : `http://localhost:5000/api/clothes?category=${category}`;
+          ? "https://shopper-be-kappa.vercel.app/api/clothes"
+          : `https://shopper-be-kappa.vercel.app/api/clothes?category=${category}`;
 
       const res = await axios.get(url);
       setData(res.data.data);

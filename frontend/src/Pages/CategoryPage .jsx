@@ -22,7 +22,7 @@ const CategoryPage = () => {
 
       const category = getCategory();
       const res = await axios.get(
-        `http://localhost:5000/api/clothes?category=${category}`,
+        `https://shopper-be-kappa.vercel.app/api/clothes?category=${category}`,
       );
 
       setData(res.data.data);

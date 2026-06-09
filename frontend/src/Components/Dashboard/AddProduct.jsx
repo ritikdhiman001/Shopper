@@ -42,7 +42,7 @@ const AddProduct = ({ onClose, refreshProducts }) => {
 
       form.append("image", selectedFile);
 
-      await axios.post("http://localhost:5000/api/clothes", form, {
+      await axios.post("https://shopper-be-kappa.vercel.app/api/clothes", form, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

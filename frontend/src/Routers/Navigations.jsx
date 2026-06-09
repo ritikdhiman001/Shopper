@@ -14,6 +14,7 @@ import AdminRoute from "./AdminRoute";
 import Users from "../Components/Dashboard/Users";
 import AdminProduct from "../Components/Dashboard/AdminProduct";
 import AdminOverview from "../Components/Dashboard/AdminOverview";
+import Sales from "../Components/Dashboard/Sales";
 
 const UserLayout = () => {
   return (
@@ -54,6 +55,7 @@ function Navigations() {
           <Route index element={<AdminOverview />} />
           <Route path="users" element={<Users />} />
           <Route path="products" element={<AdminProduct />} />
+          <Route path="sales" element={<Sales />} />
         </Route>
       </Routes>
     </>

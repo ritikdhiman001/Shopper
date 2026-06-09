@@ -57,7 +57,7 @@ const EditProduct = ({ product, onClose, refreshProducts }) => {
       if (selectedFile) {
         form.append("image", selectedFile);
       }
-      await axios.put(`http://localhost:5000/api/clothes/${product.id}`, form, {
+      await axios.put(`https://shopper-be-kappa.vercel.app/api/clothes/${product.id}`, form, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

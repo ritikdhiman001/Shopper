@@ -13,7 +13,7 @@ const PopularInWomen = () => {
     try {
       setLoading(true);
       const womenClothe = await axios.get(
-        `http://localhost:5000/api/clothes?category=WOMEN`,
+        `https://shopper-be-kappa.vercel.app/api/clothes?category=WOMEN`,
       );
       setData(womenClothe.data.data);
     } catch (error) {

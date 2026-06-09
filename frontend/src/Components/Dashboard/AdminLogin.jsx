@@ -26,7 +26,7 @@ const AdminLogin = () => {
 
     try {
       setLoading(true);
-      const res = await axios.post("http://localhost:5000/api/login", formData);
+      const res = await axios.post("https://shopper-be-kappa.vercel.app/api/login", formData);
 
       const { token, user } = res.data;
 

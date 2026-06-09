@@ -13,7 +13,7 @@ export const PopularInMen = () => {
     try {
       setLoading(true);
       const res = await axios.get(
-        `http://localhost:5000/api/clothes?category=MEN`,
+        `https://shopper-be-kappa.vercel.app/api/clothes?category=MEN`,
       );
       setData(res.data.data);
     } catch (error) {

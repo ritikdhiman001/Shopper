@@ -25,7 +25,7 @@ const EditUser = ({ user, onClose, refreshUser }) => {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `http://localhost:5000/api/admin/user/${user.id}`,
+        `https://shopper-be-kappa.vercel.app/api/admin/user/${user.id}`,
         formData,
         {
           headers: {

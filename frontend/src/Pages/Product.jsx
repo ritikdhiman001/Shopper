@@ -14,7 +14,7 @@ export const Product = () => {
     try {
       setLoading(true);
       const res = await axios.get(
-        `http://localhost:5000/api/clothes/${productId}`,
+        `https://shopper-be-kappa.vercel.app/api/clothes/${productId}`,
       );
       setProduct(res.data.data);
     } catch (error) {

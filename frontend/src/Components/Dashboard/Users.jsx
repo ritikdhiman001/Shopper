@@ -15,7 +15,7 @@ const Users = () => {
     if (!confirmDelete) return;
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5000/api/admin/user/${id}`, {
+      await axios.delete(`https://shopper-be-kappa.vercel.app/api/admin/user/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -32,7 +32,7 @@ const Users = () => {
     try {
       setIsLoading(true);
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:5000/api/admin/users", {
+      const res = await axios.get("https://shopper-teal-theta.vercel.app/api/admin/users", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setData(res.data.data);

@@ -26,7 +26,7 @@ function Signup() {
     setLoading(true);
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/register",
+        "https://shopper-be-kappa.vercel.app/api/register",
         formData,
       );
       toast.success(res.data.message || "Registration Successful!");

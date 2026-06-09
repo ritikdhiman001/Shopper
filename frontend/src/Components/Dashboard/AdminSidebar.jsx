@@ -30,7 +30,7 @@ const AdminSidebar = () => {
             Products
           </Link>
           <Link
-            to="/admin/orders"
+            to="/admin/sales"
             className="bg-white hover:bg-gray-100 text-black text-center px-4 py-2 rounded-lg active:scale-95 font-medium"
           >
             Seles
