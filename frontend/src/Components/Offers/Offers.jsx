@@ -1,8 +1,8 @@
 export const Offers = () => {
   return (
-    <div className="w-full flex justify-center items-center py-10 ">
-      <div className="w-[90%] lg:w-[60%] max-w-7xl min-h-100 flex flex-col lg:flex-row items-center justify-between px-8 lg:px-20 bg-linear-to-r bg-gray-50 rounded-3xl overflow-hidden shadow-sm">
-        <div className="flex-1 flex flex-col justify-center items-center lg:items-start text-center lg:text-left py-12 lg:py-0 space-y-4">
+    <div className="w-full flex justify-center items-center py-5 ">
+      <div className="w-[90%] lg:w-[70%] max-w-7xl min-h-100 flex lg:flex-row items-center justify-between px-8 lg:px-20 bg-linear-to-r bg-[#F3F4F6] rounded-3xl overflow-hidden shadow-sm">
+        <div className="flex-1 flex flex-col justify-center items-center lg:items-start text-center lg:text-left py-12 lg:py-0 space-y-4 lg:gap-2 gap-4">
           <div className="space-y-1">
             <h1 className="text-[#171717] text-5xl lg:text-7xl font-bold leading-none tracking-tight">
               Exclusive
@@ -12,7 +12,7 @@ export const Offers = () => {
             </h1>
           </div>
 
-          <p className="text-[#374151] text-lg lg:text-xl font-semibold uppercase tracking-widest mt-2">
+          <p className="text-[#374151] text-[20px] lg:text-xl font-semibold uppercase tracking-widest mt-2">
             Only On Best Sellers Products
           </p>
 
