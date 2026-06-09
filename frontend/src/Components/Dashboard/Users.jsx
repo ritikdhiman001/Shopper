@@ -15,11 +15,14 @@ const Users = () => {
     if (!confirmDelete) return;
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`https://shopper-be-kappa.vercel.app/api/admin/user/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      await axios.delete(
+        `https://shopper-be-kappa.vercel.app/api/admin/user/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
+      );
       toast.success("User Delete Successfully");
 
       setData((prev) => prev.filter((user) => user.id !== id));
@@ -32,9 +35,12 @@ const Users = () => {
     try {
       setIsLoading(true);
       const token = localStorage.getItem("token");
-      const res = await axios.get("https://shopper-teal-theta.vercel.app/api/admin/users", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await axios.get(
+        "https://shopper-be-kappa.vercel.app/api/admin/users",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
       setData(res.data.data);
     } catch (error) {
       toast.error("Failed to fetch user data");
